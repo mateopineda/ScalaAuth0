@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+#GET        /        controllers.Application.home
+GET     /callback                   controllers.Callback.callback(code: Option[String], state: Option[String])
+GET     /user                       controllers.User.index
+
+
+# URL para consultar la lista de prodcutos asociados a un cliente
+# de acuerdo al número y tipo de identificación
+GET /user/:typeDocument/:idUser/products/ controllers.Application.productsUser(typeDocument: Int, idUser: Int)
+
+# URL para consultar los movimientos de un producto asociados a un
+# cliente de acuerdo al número de indentificación,tipo de identificación
+# y id del cliente
+GET       /user/:typeDocument/:idUser/product/:productId/detail/  controllers.Application.detailProductUser(idUser: Int,typeDocument: Int, productId: Int)
