@@ -7,11 +7,10 @@ import com.github.nscala_time.time._
 import com.github.nscala_time.time.Imports._
 //import play.api.libs.ws.WS
 //import scala.concurrent.Future
-
 import models.Product
 import models.User
 import models.Movement
-
+import helpers.Auth0Config
 import models.User
 
 object Application extends Controller {
@@ -34,6 +33,10 @@ object Application extends Controller {
   val error : JsValue = Json.parse("""{"error":404, " description": "not found"}""")
 
   var usuarios = List(user1, user2, user3);
+
+  def index = Action {
+    Ok(views.html.index(Auth0Config.get()))
+  }
 
 //    //  Datos de prueba para detalle de producto
 //  var productName = "credito";
